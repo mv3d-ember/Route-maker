@@ -15,7 +15,7 @@
       min-height: 100vh;
     }
 
-    /* ── Login screen ─────────────────────────────────────────── */
+    /* ── Login ────────────────────────────────────────────────── */
     #loginScreen {
       display: flex;
       align-items: center;
@@ -32,18 +32,8 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     }
 
-    .login-box h2 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: #f1f5f9;
-    }
-
-    .login-box p {
-      color: #64748b;
-      font-size: 13px;
-      margin-bottom: 28px;
-    }
+    .login-box h2 { font-size: 20px; font-weight: 700; margin-bottom: 6px; color: #f1f5f9; }
+    .login-box p  { color: #64748b; font-size: 13px; margin-bottom: 28px; }
 
     .field { margin-bottom: 16px; }
 
@@ -85,7 +75,7 @@
       transition: background .15s;
     }
 
-    .btn-primary:hover { background: #4f46e5; }
+    .btn-primary:hover    { background: #4f46e5; }
     .btn-primary:disabled { background: #334155; color: #64748b; cursor: not-allowed; }
 
     #loginError {
@@ -112,17 +102,7 @@
       z-index: 10;
     }
 
-    header h1 {
-      font-size: 16px;
-      font-weight: 700;
-      color: #f1f5f9;
-      letter-spacing: -.01em;
-    }
-
-    header span {
-      font-size: 12px;
-      color: #64748b;
-    }
+    header h1 { font-size: 16px; font-weight: 700; color: #f1f5f9; letter-spacing: -.01em; }
 
     .sign-out-btn {
       background: #334155;
@@ -136,6 +116,33 @@
     }
 
     .sign-out-btn:hover { background: #475569; }
+
+    /* ── Tabs ─────────────────────────────────────────────────── */
+    .tab-bar {
+      display: flex;
+      gap: 2px;
+      padding: 0 28px;
+      background: #1e293b;
+      border-bottom: 1px solid #334155;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 14px 18px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+
+    .tab-btn:hover  { color: #cbd5e1; }
+    .tab-btn.active { color: #a5b4fc; border-bottom-color: #6366f1; }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
     main { padding: 28px; max-width: 1400px; margin: 0 auto; }
 
@@ -163,17 +170,8 @@
       margin-bottom: 8px;
     }
 
-    .stat-card .value {
-      font-size: 28px;
-      font-weight: 700;
-      color: #f1f5f9;
-    }
-
-    .stat-card .sub {
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 4px;
-    }
+    .stat-card .value { font-size: 28px; font-weight: 700; color: #f1f5f9; }
+    .stat-card .sub   { font-size: 12px; color: #64748b; margin-top: 4px; }
 
     /* ── Toolbar ──────────────────────────────────────────────── */
     .tb {
@@ -209,11 +207,7 @@
       cursor: pointer;
     }
 
-    .tb .count {
-      margin-left: auto;
-      font-size: 12px;
-      color: #64748b;
-    }
+    .tb .count { margin-left: auto; font-size: 12px; color: #64748b; }
 
     /* ── Table ────────────────────────────────────────────────── */
     .table-wrap {
@@ -223,10 +217,7 @@
       overflow: hidden;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+    table { width: 100%; border-collapse: collapse; }
 
     thead th {
       background: #0f172a;
@@ -242,31 +233,27 @@
       cursor: pointer;
     }
 
-    thead th:hover { color: #94a3b8; }
+    thead th:hover            { color: #94a3b8; }
     thead th.sort-asc::after  { content: ' ↑'; }
     thead th.sort-desc::after { content: ' ↓'; }
 
-    tbody tr {
-      border-top: 1px solid #1e293b;
-      transition: background .1s;
-    }
-
-    tbody tr:nth-child(odd) { background: #1e293b; }
+    tbody tr { border-top: 1px solid #0f172a; transition: background .1s; }
+    tbody tr:nth-child(odd)  { background: #1e293b; }
     tbody tr:nth-child(even) { background: #172033; }
-    tbody tr:hover { background: #263352; }
+    tbody tr:hover           { background: #263352; }
 
     td {
       padding: 11px 16px;
       font-size: 13px;
       color: #cbd5e1;
       white-space: nowrap;
-      max-width: 220px;
+      max-width: 260px;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    td.ip   { font-family: monospace; color: #a5b4fc; }
-    td.time { color: #64748b; font-size: 12px; }
+    td.mono { font-family: monospace; color: #a5b4fc; }
+    td.dim  { color: #64748b; font-size: 12px; }
 
     .badge {
       display: inline-block;
@@ -276,12 +263,13 @@
       font-weight: 600;
     }
 
-    .badge-os      { background: #1d3a5f; color: #93c5fd; }
-    .badge-browser { background: #1a3a2a; color: #6ee7b7; }
-    .badge-account { background: #2d1f4a; color: #c4b5fd; }
-    .badge-anon    { background: #1e293b; color: #64748b; border: 1px solid #334155; }
+    .badge-os       { background: #1d3a5f; color: #93c5fd; }
+    .badge-browser  { background: #1a3a2a; color: #6ee7b7; }
+    .badge-verified { background: #14532d; color: #86efac; }
+    .badge-pending  { background: #422006; color: #fdba74; }
+    .badge-routes   { background: #2d1f4a; color: #c4b5fd; }
 
-    #emptyMsg {
+    .placeholder {
       text-align: center;
       padding: 60px;
       color: #475569;
@@ -299,18 +287,12 @@
       transition: background .15s;
     }
 
-    .refresh-btn:hover { background: #475569; }
+    .refresh-btn:hover    { background: #475569; }
     .refresh-btn:disabled { opacity: .5; cursor: not-allowed; }
-
-    #loadingMsg {
-      text-align: center;
-      padding: 60px;
-      color: #475569;
-    }
 
     .spinner {
       display: inline-block;
-      width: 20px; height: 20px;
+      width: 18px; height: 18px;
       border: 2px solid #334155;
       border-top-color: #6366f1;
       border-radius: 50%;
@@ -347,80 +329,123 @@
 <!-- ── Dashboard ───────────────────────────────────────────────────────────── -->
 <div id="dashboard">
   <header>
-    <h1>Visitor Dashboard</h1>
+    <h1>Admin Dashboard</h1>
     <div style="display:flex;align-items:center;gap:16px">
-      <span id="adminLabel"></span>
+      <span style="font-size:12px;color:#64748b" id="adminLabel"></span>
       <button class="sign-out-btn" id="signOutBtn">Sign Out</button>
     </div>
   </header>
 
-  <main>
-    <div class="stats">
-      <div class="stat-card">
-        <div class="label">Total Visits</div>
-        <div class="value" id="statTotal">—</div>
-        <div class="sub">all time</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Unique IPs</div>
-        <div class="value" id="statIPs">—</div>
-        <div class="sub">distinct addresses</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Countries</div>
-        <div class="value" id="statCountries">—</div>
-        <div class="sub">unique</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Accounts</div>
-        <div class="value" id="statAccounts">—</div>
-        <div class="sub">registered users</div>
-      </div>
-    </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="visitors">Visitors</button>
+    <button class="tab-btn" data-tab="accounts">Accounts</button>
+  </div>
 
-    <div class="tb">
-      <input type="search" id="searchBox" placeholder="Search IP, city, country, OS…" />
-      <select id="osFilter">
-        <option value="">All OS</option>
-        <option>Windows 10/11</option>
-        <option>Windows</option>
-        <option>macOS</option>
-        <option>Android</option>
-        <option>iOS</option>
-        <option>Linux</option>
-      </select>
-      <select id="browserFilter">
-        <option value="">All Browsers</option>
-        <option>Chrome</option>
-        <option>Firefox</option>
-        <option>Safari</option>
-        <option>Edge</option>
-        <option>Opera</option>
-      </select>
-      <button class="refresh-btn" id="refreshBtn">↻ Refresh</button>
-      <span class="count" id="rowCount"></span>
-    </div>
+  <!-- ── Visitors tab ─────────────────────────────────────────────────────── -->
+  <div class="tab-panel active" id="tab-visitors">
+    <main>
+      <div class="stats">
+        <div class="stat-card">
+          <div class="label">Total Visits</div>
+          <div class="value" id="statTotal">—</div>
+          <div class="sub">all time</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Unique IPs</div>
+          <div class="value" id="statIPs">—</div>
+          <div class="sub">distinct addresses</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Countries</div>
+          <div class="value" id="statCountries">—</div>
+          <div class="sub">unique</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Registered Users</div>
+          <div class="value" id="statAccounts">—</div>
+          <div class="sub">total accounts</div>
+        </div>
+      </div>
 
-    <div class="table-wrap">
-      <div id="loadingMsg"><span class="spinner"></span>Loading…</div>
-      <table id="visitorTable" style="display:none">
-        <thead>
-          <tr>
-            <th data-col="visited_at">Time</th>
-            <th data-col="ip">IP Address</th>
-            <th data-col="country">Country</th>
-            <th data-col="city">City</th>
-            <th data-col="region">Region</th>
-            <th data-col="os">OS</th>
-            <th data-col="browser">Browser</th>
-            <th data-col="user_agent">User Agent</th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-      <div id="emptyMsg" style="display:none">No visitor records found.</div>
-    </div>
-  </main>
+      <div class="tb">
+        <input type="search" id="vSearch" placeholder="Search IP, city, country, OS…" />
+        <select id="osFilter">
+          <option value="">All OS</option>
+          <option>Windows 10/11</option>
+          <option>Windows</option>
+          <option>macOS</option>
+          <option>Android</option>
+          <option>iOS</option>
+          <option>Linux</option>
+        </select>
+        <select id="browserFilter">
+          <option value="">All Browsers</option>
+          <option>Chrome</option>
+          <option>Firefox</option>
+          <option>Safari</option>
+          <option>Edge</option>
+          <option>Opera</option>
+        </select>
+        <button class="refresh-btn" id="vRefresh">↻ Refresh</button>
+        <span class="count" id="vCount"></span>
+      </div>
+
+      <div class="table-wrap">
+        <div class="placeholder" id="vLoading"><span class="spinner"></span>Loading…</div>
+        <table id="vTable" style="display:none">
+          <thead>
+            <tr>
+              <th data-tab="visitors" data-col="visited_at">Time</th>
+              <th data-tab="visitors" data-col="ip">IP Address</th>
+              <th data-tab="visitors" data-col="country">Country</th>
+              <th data-tab="visitors" data-col="city">City</th>
+              <th data-tab="visitors" data-col="region">Region</th>
+              <th data-tab="visitors" data-col="os">OS</th>
+              <th data-tab="visitors" data-col="browser">Browser</th>
+              <th data-tab="visitors" data-col="user_agent">User Agent</th>
+            </tr>
+          </thead>
+          <tbody id="vBody"></tbody>
+        </table>
+        <div class="placeholder" id="vEmpty" style="display:none">No visitor records found.</div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ── Accounts tab ─────────────────────────────────────────────────────── -->
+  <div class="tab-panel" id="tab-accounts">
+    <main>
+      <div class="tb">
+        <input type="search" id="aSearch" placeholder="Search email or ID…" />
+        <select id="aVerified">
+          <option value="">All Users</option>
+          <option value="verified">Verified</option>
+          <option value="pending">Unverified</option>
+        </select>
+        <button class="refresh-btn" id="aRefresh">↻ Refresh</button>
+        <span class="count" id="aCount"></span>
+      </div>
+
+      <div class="table-wrap">
+        <div class="placeholder" id="aLoading" style="display:none"><span class="spinner"></span>Loading…</div>
+        <table id="aTable" style="display:none">
+          <thead>
+            <tr>
+              <th data-tab="accounts" data-col="created_at">Joined</th>
+              <th data-tab="accounts" data-col="email">Email</th>
+              <th data-tab="accounts" data-col="email_confirmed_at">Verified</th>
+              <th data-tab="accounts" data-col="last_sign_in_at">Last Sign In</th>
+              <th data-tab="accounts" data-col="route_count">Routes</th>
+              <th data-tab="accounts" data-col="id">User ID</th>
+            </tr>
+          </thead>
+          <tbody id="aBody"></tbody>
+        </table>
+        <div class="placeholder" id="aEmpty" style="display:none">No accounts found.</div>
+        <div class="placeholder" id="aIdle">Switch to this tab to load accounts.</div>
+      </div>
+    </main>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -428,7 +453,7 @@
 <script>
   const sb = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
 
-  // ── DOM refs ─────────────────────────────────────────────────────────────────
+  // ── DOM ───────────────────────────────────────────────────────────────────────
   const loginScreen   = document.getElementById('loginScreen');
   const loginForm     = document.getElementById('loginForm');
   const loginEmail    = document.getElementById('loginEmail');
@@ -438,19 +463,34 @@
   const dashboard     = document.getElementById('dashboard');
   const adminLabel    = document.getElementById('adminLabel');
   const signOutBtn    = document.getElementById('signOutBtn');
-  const searchBox     = document.getElementById('searchBox');
-  const osFilter      = document.getElementById('osFilter');
-  const browserFilter = document.getElementById('browserFilter');
-  const refreshBtn    = document.getElementById('refreshBtn');
-  const rowCount      = document.getElementById('rowCount');
-  const loadingMsg    = document.getElementById('loadingMsg');
-  const visitorTable  = document.getElementById('visitorTable');
-  const tbody         = document.getElementById('tbody');
-  const emptyMsg      = document.getElementById('emptyMsg');
 
-  let allRows   = [];
-  let sortCol   = 'visited_at';
-  let sortDir   = 'desc';
+  // visitor tab
+  const vSearch   = document.getElementById('vSearch');
+  const osFilter  = document.getElementById('osFilter');
+  const brFilter  = document.getElementById('browserFilter');
+  const vRefresh  = document.getElementById('vRefresh');
+  const vCount    = document.getElementById('vCount');
+  const vLoading  = document.getElementById('vLoading');
+  const vTable    = document.getElementById('vTable');
+  const vBody     = document.getElementById('vBody');
+  const vEmpty    = document.getElementById('vEmpty');
+
+  // accounts tab
+  const aSearch   = document.getElementById('aSearch');
+  const aVerified = document.getElementById('aVerified');
+  const aRefresh  = document.getElementById('aRefresh');
+  const aCount    = document.getElementById('aCount');
+  const aLoading  = document.getElementById('aLoading');
+  const aTable    = document.getElementById('aTable');
+  const aBody     = document.getElementById('aBody');
+  const aEmpty    = document.getElementById('aEmpty');
+  const aIdle     = document.getElementById('aIdle');
+
+  let visitors     = [];
+  let accounts     = [];
+  let accountsLoaded = false;
+  let vSort = { col: 'visited_at', dir: 'desc' };
+  let aSort = { col: 'created_at', dir: 'desc' };
 
   // ── Auth ──────────────────────────────────────────────────────────────────────
   sb.auth.onAuthStateChange((event, session) => {
@@ -461,7 +501,6 @@
       adminLabel.textContent    = user.email;
       loadVisitors();
     } else if (user) {
-      // signed in but not admin
       sb.auth.signOut();
       loginError.textContent = 'Access denied.';
     }
@@ -470,16 +509,16 @@
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     loginError.textContent = '';
-    loginBtn.disabled      = true;
-    loginBtn.textContent   = 'Signing in…';
+    loginBtn.disabled    = true;
+    loginBtn.textContent = 'Signing in…';
     const { error } = await sb.auth.signInWithPassword({
       email:    loginEmail.value.trim(),
       password: loginPassword.value,
     });
     if (error) {
       loginError.textContent = error.message;
-      loginBtn.disabled      = false;
-      loginBtn.textContent   = 'Sign In';
+      loginBtn.disabled    = false;
+      loginBtn.textContent = 'Sign In';
     }
   });
 
@@ -488,14 +527,26 @@
     dashboard.style.display   = 'none';
     loginScreen.style.display = 'flex';
     loginForm.reset();
+    accountsLoaded = false;
   });
 
-  // ── Data ──────────────────────────────────────────────────────────────────────
+  // ── Tabs ──────────────────────────────────────────────────────────────────────
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      if (btn.dataset.tab === 'accounts' && !accountsLoaded) loadAccounts();
+    });
+  });
+
+  // ── Visitors ─────────────────────────────────────────────────────────────────
   async function loadVisitors() {
-    loadingMsg.style.display  = 'block';
-    visitorTable.style.display = 'none';
-    emptyMsg.style.display    = 'none';
-    refreshBtn.disabled       = true;
+    vLoading.style.display = 'block';
+    vTable.style.display   = 'none';
+    vEmpty.style.display   = 'none';
+    vRefresh.disabled      = true;
 
     const { data, error } = await sb
       .from('visitors')
@@ -503,32 +554,27 @@
       .order('visited_at', { ascending: false })
       .limit(2000);
 
-    refreshBtn.disabled = false;
-    loadingMsg.style.display = 'none';
+    vRefresh.disabled      = false;
+    vLoading.style.display = 'none';
 
     if (error || !data) {
-      emptyMsg.textContent   = 'Failed to load: ' + (error?.message ?? 'unknown error');
-      emptyMsg.style.display = 'block';
+      vEmpty.textContent   = 'Failed to load: ' + (error?.message ?? 'unknown');
+      vEmpty.style.display = 'block';
       return;
     }
 
-    allRows = data;
-    updateStats(data);
-    renderTable();
-  }
-
-  function updateStats(data) {
+    visitors = data;
     document.getElementById('statTotal').textContent     = data.length.toLocaleString();
     document.getElementById('statIPs').textContent       = new Set(data.map(r => r.ip)).size.toLocaleString();
     document.getElementById('statCountries').textContent = new Set(data.map(r => r.country).filter(Boolean)).size.toLocaleString();
-    document.getElementById('statAccounts').textContent  = '—';
+    renderVisitors();
   }
 
-  function filtered() {
-    const q   = searchBox.value.toLowerCase();
-    const os  = osFilter.value;
-    const br  = browserFilter.value;
-    return allRows.filter(r => {
+  function filteredVisitors() {
+    const q  = vSearch.value.toLowerCase();
+    const os = osFilter.value;
+    const br = brFilter.value;
+    return visitors.filter(r => {
       if (os && r.os !== os) return false;
       if (br && r.browser !== br) return false;
       if (q && !JSON.stringify(r).toLowerCase().includes(q)) return false;
@@ -536,40 +582,24 @@
     });
   }
 
-  function sorted(rows) {
-    return [...rows].sort((a, b) => {
-      let va = a[sortCol] ?? '';
-      let vb = b[sortCol] ?? '';
-      if (va < vb) return sortDir === 'asc' ? -1 : 1;
-      if (va > vb) return sortDir === 'asc' ? 1 : -1;
-      return 0;
-    });
-  }
-
-  function renderTable() {
-    const rows = sorted(filtered());
-    rowCount.textContent = `${rows.length} row${rows.length !== 1 ? 's' : ''}`;
-
+  function renderVisitors() {
+    const rows = sortRows(filteredVisitors(), vSort);
+    vCount.textContent = `${rows.length} row${rows.length !== 1 ? 's' : ''}`;
     if (rows.length === 0) {
-      visitorTable.style.display = 'none';
-      emptyMsg.style.display     = 'block';
-      emptyMsg.textContent       = 'No records match your filter.';
+      vTable.style.display = 'none';
+      vEmpty.style.display = 'block';
+      vEmpty.textContent   = 'No records match your filter.';
       return;
     }
-
-    emptyMsg.style.display     = 'none';
-    visitorTable.style.display = 'table';
-
-    tbody.innerHTML = rows.map(r => {
-      const time = r.visited_at
-        ? new Date(r.visited_at).toLocaleString()
-        : '—';
+    vEmpty.style.display = 'none';
+    vTable.style.display = 'table';
+    vBody.innerHTML = rows.map(r => {
       const ua = r.user_agent
-        ? `<span title="${esc(r.user_agent)}">${esc(r.user_agent.slice(0, 60))}…</span>`
+        ? `<span title="${esc(r.user_agent)}">${esc(r.user_agent.slice(0, 55))}…</span>`
         : '—';
       return `<tr>
-        <td class="time">${esc(time)}</td>
-        <td class="ip">${esc(r.ip ?? '—')}</td>
+        <td class="dim">${fmtDate(r.visited_at)}</td>
+        <td class="mono">${esc(r.ip ?? '—')}</td>
         <td>${esc(r.country ?? '—')}</td>
         <td>${esc(r.city ?? '—')}</td>
         <td>${esc(r.region ?? '—')}</td>
@@ -580,6 +610,112 @@
     }).join('');
   }
 
+  vSearch.addEventListener('input', renderVisitors);
+  osFilter.addEventListener('change', renderVisitors);
+  brFilter.addEventListener('change', renderVisitors);
+  vRefresh.addEventListener('click', loadVisitors);
+
+  // ── Accounts ─────────────────────────────────────────────────────────────────
+  async function loadAccounts() {
+    aIdle.style.display    = 'none';
+    aLoading.style.display = 'block';
+    aTable.style.display   = 'none';
+    aEmpty.style.display   = 'none';
+    aRefresh.disabled      = true;
+
+    const { data, error } = await sb.rpc('admin_get_users');
+
+    aRefresh.disabled      = false;
+    aLoading.style.display = 'none';
+    accountsLoaded         = true;
+
+    if (error || !data) {
+      aEmpty.textContent   = 'Failed to load: ' + (error?.message ?? 'unknown');
+      aEmpty.style.display = 'block';
+      return;
+    }
+
+    accounts = data;
+    document.getElementById('statAccounts').textContent = data.length.toLocaleString();
+    renderAccounts();
+  }
+
+  function filteredAccounts() {
+    const q = aSearch.value.toLowerCase();
+    const v = aVerified.value;
+    return accounts.filter(r => {
+      if (v === 'verified' && !r.email_confirmed_at) return false;
+      if (v === 'pending'  &&  r.email_confirmed_at) return false;
+      if (q && !JSON.stringify(r).toLowerCase().includes(q)) return false;
+      return true;
+    });
+  }
+
+  function renderAccounts() {
+    const rows = sortRows(filteredAccounts(), aSort);
+    aCount.textContent = `${rows.length} user${rows.length !== 1 ? 's' : ''}`;
+    if (rows.length === 0) {
+      aTable.style.display = 'none';
+      aEmpty.style.display = 'block';
+      aEmpty.textContent   = 'No accounts match your filter.';
+      return;
+    }
+    aEmpty.style.display = 'none';
+    aTable.style.display = 'table';
+    aBody.innerHTML = rows.map(r => {
+      const verified = r.email_confirmed_at
+        ? `<span class="badge badge-verified">Verified</span>`
+        : `<span class="badge badge-pending">Pending</span>`;
+      const routes = r.route_count > 0
+        ? `<span class="badge badge-routes">${r.route_count}</span>`
+        : `<span style="color:#475569">0</span>`;
+      return `<tr>
+        <td class="dim">${fmtDate(r.created_at)}</td>
+        <td style="color:#f1f5f9;font-weight:500">${esc(r.email ?? '—')}</td>
+        <td>${verified}</td>
+        <td class="dim">${r.last_sign_in_at ? fmtDate(r.last_sign_in_at) : 'Never'}</td>
+        <td>${routes}</td>
+        <td class="mono" style="font-size:11px;color:#475569">${esc(r.id ?? '—')}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  aSearch.addEventListener('input', renderAccounts);
+  aVerified.addEventListener('change', renderAccounts);
+  aRefresh.addEventListener('click', () => { accountsLoaded = false; loadAccounts(); });
+
+  // ── Sorting ───────────────────────────────────────────────────────────────────
+  document.querySelectorAll('thead th[data-col]').forEach(th => {
+    th.addEventListener('click', () => {
+      const col    = th.dataset.col;
+      const isVTab = th.dataset.tab === 'visitors';
+      const s      = isVTab ? vSort : aSort;
+
+      if (s.col === col) s.dir = s.dir === 'asc' ? 'desc' : 'asc';
+      else { s.col = col; s.dir = 'desc'; }
+
+      th.closest('thead').querySelectorAll('th').forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
+      th.classList.add(s.dir === 'asc' ? 'sort-asc' : 'sort-desc');
+
+      isVTab ? renderVisitors() : renderAccounts();
+    });
+  });
+
+  // ── Helpers ───────────────────────────────────────────────────────────────────
+  function sortRows(rows, s) {
+    return [...rows].sort((a, b) => {
+      const va = a[s.col] ?? '';
+      const vb = b[s.col] ?? '';
+      if (va < vb) return s.dir === 'asc' ? -1 : 1;
+      if (va > vb) return s.dir === 'asc' ? 1  : -1;
+      return 0;
+    });
+  }
+
+  function fmtDate(ts) {
+    return ts ? new Date(ts).toLocaleString() : '—';
+  }
+
   function esc(str) {
     return String(str)
       .replace(/&/g, '&amp;')
@@ -587,30 +723,6 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
   }
-
-  // ── Sorting ───────────────────────────────────────────────────────────────────
-  document.querySelectorAll('thead th[data-col]').forEach(th => {
-    th.addEventListener('click', () => {
-      const col = th.dataset.col;
-      if (sortCol === col) {
-        sortDir = sortDir === 'asc' ? 'desc' : 'asc';
-      } else {
-        sortCol = col;
-        sortDir = 'desc';
-      }
-      document.querySelectorAll('thead th').forEach(h => {
-        h.classList.remove('sort-asc', 'sort-desc');
-      });
-      th.classList.add(sortDir === 'asc' ? 'sort-asc' : 'sort-desc');
-      renderTable();
-    });
-  });
-
-  // ── Filters ───────────────────────────────────────────────────────────────────
-  searchBox.addEventListener('input', renderTable);
-  osFilter.addEventListener('change', renderTable);
-  browserFilter.addEventListener('change', renderTable);
-  refreshBtn.addEventListener('click', loadVisitors);
 </script>
 </body>
 </html>

@@ -50,3 +50,32 @@ create policy "insert_visitors" on public.visitors
 
 create policy "read_visitors" on public.visitors
   for select using (auth.email() = 'mvwhytemail@gmail.com');
+
+-- ─── Admin: list registered users ────────────────────────────────────────────
+
+create or replace function public.admin_get_users()
+returns table (
+  id                  uuid,
+  email               text,
+  created_at          timestamptz,
+  last_sign_in_at     timestamptz,
+  email_confirmed_at  timestamptz,
+  route_count         bigint
+)
+language sql
+security definer
+stable
+as $$
+  select
+    u.id,
+    u.email,
+    u.created_at,
+    u.last_sign_in_at,
+    u.email_confirmed_at,
+    count(r.id) as route_count
+  from auth.users u
+  left join public.routes r on r.user_id = u.id
+  where auth.email() = 'mvwhytemail@gmail.com'
+  group by u.id, u.email, u.created_at, u.last_sign_in_at, u.email_confirmed_at
+  order by u.created_at desc;
+$$;
