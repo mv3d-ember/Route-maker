@@ -28,9 +28,11 @@ let locationMarker = null;
 let totalDistance  = 0;
 let currentUser    = null;
 let pendingAction  = null;   // fires after successful sign-in
+let useMetric      = localStorage.getItem('unit') !== 'imperial';
 
 // ─── DOM Refs ─────────────────────────────────────────────────────────────────
 
+const unitBtns     = document.querySelectorAll('.unit-btn');
 const drawBtn      = document.getElementById('drawBtn');
 const undoBtn      = document.getElementById('undoBtn');
 const clearBtn     = document.getElementById('clearBtn');
@@ -74,6 +76,23 @@ const panelOverlay = document.getElementById('panelOverlay');
 const viewBanner   = document.getElementById('viewBanner');
 const vbName       = document.getElementById('vbName');
 const vbDist       = document.getElementById('vbDist');
+
+// ─── Unit toggle ─────────────────────────────────────────────────────────────
+
+function applyUnitUI() {
+  unitBtns.forEach(b => b.classList.toggle('active', b.dataset.unit === (useMetric ? 'metric' : 'imperial')));
+}
+
+unitBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    useMetric = btn.dataset.unit === 'metric';
+    localStorage.setItem('unit', useMetric ? 'metric' : 'imperial');
+    applyUnitUI();
+    refreshAllDistances();
+  });
+});
+
+applyUnitUI();
 
 // ─── Status helpers ───────────────────────────────────────────────────────────
 
@@ -651,7 +670,7 @@ function buildRouteCard(route) {
   card.innerHTML = `
     <div class="rc-top">
       <span class="rc-name">${esc(route.name)}</span>
-      <span class="rc-dist">${fmt(route.total_distance)}</span>
+      <span class="rc-dist" data-metres="${route.total_distance}">${fmt(route.total_distance)}</span>
     </div>
     <div class="rc-date">${date}${route.is_shared ? '<span class="shared-dot" title="Shared"></span>' : ''}</div>
     <div class="rc-actions">
@@ -756,6 +775,7 @@ async function checkSharedRoute() {
     if (allPts.length) map.fitBounds(L.latLngBounds(allPts).pad(0.15));
 
     vbName.textContent = data.name;
+    vbDist.dataset.metres = data.total_distance;
     vbDist.textContent = fmt(data.total_distance);
     viewBanner.classList.remove('hidden');
     hideStatus();
@@ -769,8 +789,28 @@ checkSharedRoute();
 
 // ─── UI helpers ───────────────────────────────────────────────────────────────
 
-function fmt(m) {
-  return m < 1000 ? `${Math.round(m)} m` : `${(m / 1000).toFixed(2)} km`;
+function fmt(metres) {
+  if (useMetric) {
+    return metres < 1000
+      ? `${Math.round(metres)} m`
+      : `${(metres / 1000).toFixed(2)} km`;
+  } else {
+    const miles = metres * 0.000621371;
+    return miles < 0.1
+      ? `${Math.round(metres * 3.28084)} ft`
+      : `${miles.toFixed(2)} mi`;
+  }
+}
+
+function refreshAllDistances() {
+  // Toolbar stats
+  updateStats();
+  // View banner (distance stored in data-metres attribute)
+  if (vbDist.dataset.metres) vbDist.textContent = fmt(+vbDist.dataset.metres);
+  // Route cards in open panel (each .rc-dist stores metres in data-metres)
+  document.querySelectorAll('.rc-dist[data-metres]').forEach(el => {
+    el.textContent = fmt(+el.dataset.metres);
+  });
 }
 
 function updateStats() {

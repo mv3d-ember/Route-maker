@@ -717,5 +717,36 @@ body.modal-open { overflow: hidden; }
   animation: spin 0.75s linear infinite;
 }
 
+/* ── Unit toggle ─────────────────────────────────────────────────────────── */
+.unit-toggle {
+  display: flex;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.unit-btn {
+  padding: 6px 11px;
+  border: none !important;
+  border-radius: 0 !important;
+  background: #f8fafc;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.13s, color 0.13s;
+  box-shadow: none !important;
+}
+
+.unit-btn + .unit-btn { border-left: 1.5px solid #e2e8f0 !important; }
+
+.unit-btn:hover:not(.active) { background: #e2e8f0; color: #475569; }
+
+.unit-btn.active {
+  background: #2563eb;
+  color: #fff;
+}
+
 /* ── Utility ─────────────────────────────────────────────────────────────── */
 .hidden { display: none !important; }
