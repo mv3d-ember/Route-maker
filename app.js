@@ -247,11 +247,11 @@ authForm.addEventListener('submit', async (e) => {
       if (error) throw error;
       // onAuthStateChange fires SIGNED_IN → closes modal + runs pendingAction
     } else {
-      const { data, error } = await sb.auth.signUp({ email, password });
-      if (error) throw error;
-      if (!data.session) {
-        setAuthMsg('Account created! Check your email to confirm before signing in.', 'success');
-      }
+     const { data, error } = await sb.auth.signUp({
+  email,
+  password,
+  options: { emailRedirectTo: window.location.origin }
+});
       // If email confirmation disabled in Supabase, onAuthStateChange fires immediately
     }
   } catch (err) {
