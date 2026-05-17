@@ -25,3 +25,30 @@ create policy "update_routes" on public.routes
 
 create policy "delete_routes" on public.routes
   for delete using (auth.uid() = user_id);
+
+-- ─── Visitor tracking ────────────────────────────────────────────────────────
+-- Replace 'your@email.com' below with your actual admin email
+
+create table if not exists public.visitors (
+  id          uuid        primary key default gen_random_uuid(),
+  ip          text,
+  country     text,
+  city        text,
+  region      text,
+  latitude    float,
+  longitude   float,
+  os          text,
+  browser     text,
+  user_agent  text,
+  visited_at  timestamptz not null default now()
+);
+
+alter table public.visitors enable row level security;
+
+-- Anyone (anon) can insert a visit log
+create policy "insert_visitors" on public.visitors
+  for insert with check (true);
+
+-- Only the admin account can read visitor logs
+create policy "read_visitors" on public.visitors
+  for select using (auth.email() = 'your@email.com');
