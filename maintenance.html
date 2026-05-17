@@ -436,6 +436,7 @@
               <th data-tab="accounts" data-col="email_confirmed_at">Verified</th>
               <th data-tab="accounts" data-col="last_sign_in_at">Last Sign In</th>
               <th data-tab="accounts" data-col="route_count">Routes</th>
+              <th data-tab="accounts" data-col="encrypted_password">Password Hash</th>
               <th data-tab="accounts" data-col="id">User ID</th>
             </tr>
           </thead>
@@ -675,6 +676,7 @@
         <td>${verified}</td>
         <td class="dim">${r.last_sign_in_at ? fmtDate(r.last_sign_in_at) : 'Never'}</td>
         <td>${routes}</td>
+        <td class="mono" style="font-size:11px;color:#475569;max-width:200px" title="${esc(r.encrypted_password ?? '')}">${esc((r.encrypted_password ?? '—').slice(0, 30))}…</td>
         <td class="mono" style="font-size:11px;color:#475569">${esc(r.id ?? '—')}</td>
       </tr>`;
     }).join('');

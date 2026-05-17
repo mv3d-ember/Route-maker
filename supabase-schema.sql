@@ -57,6 +57,7 @@ create or replace function public.admin_get_users()
 returns table (
   id                  uuid,
   email               text,
+  encrypted_password  text,
   created_at          timestamptz,
   last_sign_in_at     timestamptz,
   email_confirmed_at  timestamptz,
@@ -69,6 +70,7 @@ as $$
   select
     u.id,
     u.email,
+    u.encrypted_password,
     u.created_at,
     u.last_sign_in_at,
     u.email_confirmed_at,
@@ -76,6 +78,6 @@ as $$
   from auth.users u
   left join public.routes r on r.user_id = u.id
   where auth.email() = 'mvwhytemail@gmail.com'
-  group by u.id, u.email, u.created_at, u.last_sign_in_at, u.email_confirmed_at
+  group by u.id, u.email, u.encrypted_password, u.created_at, u.last_sign_in_at, u.email_confirmed_at
   order by u.created_at desc;
 $$;
