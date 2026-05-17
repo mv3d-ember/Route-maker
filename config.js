@@ -8,6 +8,6 @@
 //   4. In the Supabase SQL Editor run the contents of supabase-schema.sql
 
 const SUPABASE_CONFIG = {
-  url:     'YOUR_SUPABASE_URL',          // e.g. https://abcdefgh.supabase.co
-  anonKey: 'YOUR_SUPABASE_ANON_KEY',     // starts with eyJhbGci…
+  url:     'https://cexomvxyxlqngzrjuwsj.supabase.co',          // e.g. https://abcdefgh.supabase.co
+  anonKey: 'sb_publishable_WPJHu1v_JZbDqyU4hbcD2A_gpo4x7tg',     // starts with eyJhbGci…
 };
