@@ -49,4 +49,4 @@ create policy "insert_visitors" on public.visitors
   for insert with check (true);
 
 create policy "read_visitors" on public.visitors
-  for select using (auth.email() = 'your@email.com');
+  for select using (auth.email() = 'mvwhytemail@gmail.com');
