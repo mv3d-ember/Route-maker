@@ -13,4 +13,4 @@ const SUPABASE_CONFIG = {
 };
 
 // Admin email — only this account can access maintenance.html
-const ADMIN_EMAIL = 'your@email.com';
+const ADMIN_EMAIL = 'mvwhytemail@gmail.com';
