@@ -170,6 +170,49 @@ if (sb) {
   });
 }
 
+// ─── Visitor tracking ─────────────────────────────────────────────────────────
+
+function parseOS(ua) {
+  if (/Windows NT 10/.test(ua)) return 'Windows 10/11';
+  if (/Windows NT 6\.3/.test(ua)) return 'Windows 8.1';
+  if (/Windows/.test(ua)) return 'Windows';
+  if (/Android/.test(ua)) return 'Android';
+  if (/iPhone|iPad/.test(ua)) return 'iOS';
+  if (/Mac OS X/.test(ua)) return 'macOS';
+  if (/Linux/.test(ua)) return 'Linux';
+  return 'Unknown';
+}
+
+function parseBrowser(ua) {
+  if (/Edg\//.test(ua)) return 'Edge';
+  if (/OPR\/|Opera/.test(ua)) return 'Opera';
+  if (/Firefox\//.test(ua)) return 'Firefox';
+  if (/Chrome\//.test(ua)) return 'Chrome';
+  if (/Safari\//.test(ua)) return 'Safari';
+  return 'Unknown';
+}
+
+async function logVisit() {
+  if (!sb) return;
+  try {
+    const geo = await fetch('https://ipapi.co/json/').then(r => r.json());
+    const ua  = navigator.userAgent;
+    await sb.from('visitors').insert({
+      ip:         geo.ip,
+      country:    geo.country_name,
+      city:       geo.city,
+      region:     geo.region,
+      latitude:   geo.latitude,
+      longitude:  geo.longitude,
+      os:         parseOS(ua),
+      browser:    parseBrowser(ua),
+      user_agent: ua,
+    });
+  } catch { /* silently ignore tracking errors */ }
+}
+
+logVisit();
+
 function requireAuth(callback) {
   if (currentUser) {
     callback();

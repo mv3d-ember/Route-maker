@@ -11,3 +11,6 @@ const SUPABASE_CONFIG = {
   url:     'https://cexomvxyxlqngzrjuwsj.supabase.co',          // e.g. https://abcdefgh.supabase.co
   anonKey: 'sb_publishable_WPJHu1v_JZbDqyU4hbcD2A_gpo4x7tg',     // starts with eyJhbGci…
 };
+
+// Admin email — only this account can view maintenance.html
+const ADMIN_EMAIL = 'your@email.com';
